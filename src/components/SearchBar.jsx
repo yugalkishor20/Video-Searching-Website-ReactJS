@@ -30,7 +30,7 @@ const SearchBar = () => {
             </div>
             <div className='flex flex-row mx-2 '>
                 <span className='mr-4 text-gray-500 hover:text-gray-800 hover:scale-105'><BsFillMicFill/></span>
-                <span className='text-gray-500 hover:text-gray-800 hover:scale-105'><AiOutlineSearch/></span>
+                <span className='text-gray-500 hover:text-gray-800 hover:scale-105' onClick={onFormSubmit}><AiOutlineSearch/></span>
             </div>
         </form>
         </div>
