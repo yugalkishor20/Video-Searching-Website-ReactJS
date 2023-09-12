@@ -20,8 +20,9 @@ const SavedVideos = ({uid,signedin}) => {
     const [vid, setVid] = useState([]);
     const [signin,setsignin]=useState("hidden");
     const [signout,setsignout]=useState("");
-    const fetchPost = async () => {
-       
+    
+    const onDelete = async (id) =>{
+        await deleteDoc(doc(db, uid+":saved", id));
         await getDocs(collection(db, uid+":saved"))
             .then((querySnapshot)=>{               
                 const newData = querySnapshot.docs
@@ -29,12 +30,6 @@ const SavedVideos = ({uid,signedin}) => {
                 setVid(newData);                
                 console.log(newData);
             })
-       
-    }
-
-    const onDelete = async (id) =>{
-        await deleteDoc(doc(db, uid+":saved", id));
-        fetchPost();
     }
 
     
@@ -43,7 +38,13 @@ const SavedVideos = ({uid,signedin}) => {
     useEffect(()=>{
         
         if(uid){
-            fetchPost();
+            getDocs(collection(db, uid+":saved"))
+            .then((querySnapshot)=>{               
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id:doc.id }));
+                setVid(newData);                
+                console.log(newData);
+            })
             setsignin("");
             setsignout("hidden")
         }
@@ -62,9 +63,9 @@ const SavedVideos = ({uid,signedin}) => {
         <h1 className='flex flex-row justify-center items-center w-full h-full font-medium'>Please "Sign In" to see your "Saved Videos"</h1>
         </div>
 
-        <div className='w-full h-full flex justify-center overflow-y-scroll'>
+        <div className={'w-full h-full flex justify-center overflow-y-scroll '+signin}>
         
-            <div  className={'pt-20  max-w-screen-lg '+signin}> 
+            <div  className='pt-20  max-w-screen-lg '> 
             <div className='px-6 pb-4 text-xl font-bold border-b'>Saved Videos</div>
                 {vid.map((item)=>{
                     return(

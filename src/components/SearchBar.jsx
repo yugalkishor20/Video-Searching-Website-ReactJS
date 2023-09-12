@@ -23,7 +23,7 @@ const SearchBar = () => {
     
   return (
     <div className='flex flex-row justify-center items-center w-full h-20'>
-        <div className='flex flex-row justify-center items-center w-full md:w-1/2 p-2 px-4 rounded-full shadow-md cursor-pointer'>
+        <div className='flex flex-row justify-center items-center w-full md:w-1/2 p-2 pt-3 px-4 border-y border-x rounded-full shadow-md cursor-pointer'>
         <form onSubmit={onFormSubmit} className='flex flex-row justify-between w-full'>
             <div className='w-full'>
                 <input placeholder='Search Videos' onChange={onInputChange} className='border-none outline-none w-full' />

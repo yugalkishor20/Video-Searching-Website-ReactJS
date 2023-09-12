@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import {FaUserCircle} from 'react-icons/fa'
 import {RiLockPasswordFill, RiLockPasswordLine} from 'react-icons/ri'
+import { toast } from 'react-toastify';
 import { onSignUp } from '../controller/userController';
 
 const SignUp = () => {
@@ -10,12 +11,16 @@ const SignUp = () => {
  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const onFormSubmit= async (e)=>{
     e.preventDefault()
-
-    await onSignUp(email,password);
-    navigate("/home");
+    if(password===confirmPassword){
+      await onSignUp(email,password)
+     navigate("/home")
+    }
+    else toast.error("Password not matching");
+    
   }
 
   return (
@@ -30,10 +35,10 @@ const SignUp = () => {
             <input type='password' placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)}  className='placeholder:text-black  outline-none ml-3'/>
           </div>
 
-          {/* <div className=' flex flex-row items-center w-full p-3 shadow-inner m-2 px-4 border-x border-y rounded-md'>
+          <div className=' flex flex-row items-center w-full p-3 shadow-inner m-2 px-4 border-x border-y rounded-md'>
             <RiLockPasswordFill size={20} className='text-gray-400'/>
-            <input type='password' placeholder='Confirm Password' className='placeholder:text-black outline-none ml-3'/>
-          </div> */}
+            <input type='password' placeholder='Confirm Password' onChange={(e) => setConfirmPassword(e.target.value)} className='placeholder:text-black outline-none ml-3'/>
+          </div>
 
           <div className='w-full m-4 text-white font-semibold rounded-md cursor-pointer p-2 text-center bg-gradient-to-b from-green-500 to-green-600'>
             <button type='submit' className='w-full' onClick={onFormSubmit}>Sign Up</button>

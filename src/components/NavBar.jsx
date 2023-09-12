@@ -47,7 +47,7 @@ const NavBar = ({uid,signedin}) => {
                         Project
                     </h1>
                 ):(
-                    <div className='text-base sm:text-2xl'>
+                    <div className='text-xl sm:text-2xl'>
                         <Title/>
                     </div>
                 )
@@ -80,9 +80,9 @@ const NavBar = ({uid,signedin}) => {
         {nav&&(
             <ul className='flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-white text-gray-500'>
             {links.map(({id,link,style}) => (
-                <li key={id} className='px-4 py-6 cursor-pointer capitalize text-2xl '>
+                <Link to={link} key={id} className='px-4 py-6 cursor-pointer capitalize text-2xl '>
                 <span onClick={()=>setNav(!nav)}>{link}</span>
-                </li>
+                </Link>
             
             ))}
             

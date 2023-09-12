@@ -1,6 +1,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged} from "firebase/auth";
+import { ToastContainer} from 'react-toastify';
 import { auth } from './controller/firebase';
 import Authentication from './components/Authentication';
 import Home from './components/Home';
@@ -51,6 +52,14 @@ function App() {
         <Route path="saved" element={<SavedVideos uid={uid} signedin={signedin}/>} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        draggablePercent={60}
+        hideProgressBar={true}
+        autoClose={5000}
+        pauseOnHover={false}
+        style={{marginTop:"50px"}}
+      />
     </BrowserRouter>
   );
 }

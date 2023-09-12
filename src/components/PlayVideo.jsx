@@ -36,7 +36,7 @@ const PlayVideo = ({uid,src,title,channel,description,thumbnail}) => {
 
     
     <>
-    <div className='flex px-3 sm:justify-center text-base sm:text-2xl font-bold py-2 border-b border-gray-100 bg-white shadow-sm'><Title/></div>
+    <div className='flex px-3 sm:justify-center text-xl sm:text-2xl font-bold py-2 mr-5 sm:mr-0 border-b border-gray-100 bg-white shadow-sm'><Title/></div>
     <div className='w-full flex flex-row justify-center items-center pt-6 px-4'>
       <div className='w-full md:w-1/2 '>
         <div className=' w-full aspect-video cursor-pointer'>

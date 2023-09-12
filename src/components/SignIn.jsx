@@ -18,6 +18,7 @@ const SignIn = () => {
         await onSignIn(email,password);
         navigate("/home");
         
+        
 
     }
 
@@ -33,11 +34,12 @@ const SignIn = () => {
             <RiLockPasswordFill size={20} className='text-gray-400'/>
             <input type='password' placeholder='Enter Password' onChange={(e)=>setPassword(e.target.value)} className='placeholder:text-black outline-none ml-3'/>
           </div>
-
+          
           <div className='w-full m-4 text-white font-semibold rounded-md cursor-pointer p-2 text-center bg-gradient-to-b from-green-500 to-green-600'>
             <button type="submit" className='w-full' onClick={onFormSubmit}>Sign In</button>
           </div>
         </form>
+
     </div>
   )
 }

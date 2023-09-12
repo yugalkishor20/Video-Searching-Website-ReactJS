@@ -20,8 +20,10 @@ const UserHistory = ({uid,signedin}) => {
     const [vid, setVid] = useState([]);
     const [signin,setsignin]=useState("hidden");
     const [signout,setsignout]=useState("");
-    const fetchPost = async () => {
-       
+    
+    
+    const onDelete = async (id) =>{
+        await deleteDoc(doc(db, uid+":history", id));
         await getDocs(collection(db, uid+":history"))
             .then((querySnapshot)=>{               
                 const newData = querySnapshot.docs
@@ -29,21 +31,21 @@ const UserHistory = ({uid,signedin}) => {
                 setVid(newData);                
                 console.log(newData);
             })
-       
-    }
-
-    const onDelete = async (id) =>{
-        await deleteDoc(doc(db, uid+":history", id));
-        fetchPost();
     }
 
     
     
    
-    useEffect(()=>{
+    useEffect( ()=>{
         
         if(uid){
-            fetchPost();
+            getDocs(collection(db, uid+":history"))
+            .then((querySnapshot)=>{               
+                const newData = querySnapshot.docs
+                    .map((doc) => ({...doc.data(), id:doc.id }));
+                setVid(newData);                
+                console.log(newData);
+            })
             setsignin("");
             setsignout("hidden")
         }
@@ -54,6 +56,9 @@ const UserHistory = ({uid,signedin}) => {
         
     },[uid])
 
+
+
+
     vid.sort(GetSortOrder("createdAt"));
 
   return (
@@ -62,9 +67,9 @@ const UserHistory = ({uid,signedin}) => {
         <h1 className='flex flex-row justify-center items-center w-full h-full font-medium'>Please "Sign In" to see your "History"</h1>
         </div>
 
-        <div className='w-full h-full flex justify-center overflow-y-scroll'>
+        <div className={'w-full h-full flex justify-center overflow-y-scroll '+signin}>
         
-            <div  className={'pt-20  max-w-screen-lg '+signin}> 
+            <div  className='pt-20  max-w-screen-lg '> 
             <div className='px-6 pb-4 text-xl font-bold border-b'>History</div>
                 {vid.map((item)=>{
                     return(
