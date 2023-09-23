@@ -1,6 +1,7 @@
 import React from 'react'
 import {FaUserCircle} from 'react-icons/fa'
 import { doc, setDoc  } from "firebase/firestore";
+import { toast} from 'react-toastify';
 import {db} from '../controller/firebase';
 import Title from './Title'
 
@@ -15,7 +16,7 @@ const PlayVideo = ({uid,src,title,channel,description,thumbnail}) => {
       if(uid){
         console.log(uid);
         try {
-          const docRef = await setDoc(doc(db, uid+":saved",src), {
+          await setDoc(doc(db, uid+":saved",src), {
             video: src,
             title:title,
             thumbnail:thumbnail,
@@ -23,7 +24,7 @@ const PlayVideo = ({uid,src,title,channel,description,thumbnail}) => {
             description:description,
             createdAt:Date.now()
           });
-          console.log("Document written with ID: ", docRef.id);
+          toast.success("Video Saved Successfully");
         } catch (e) {
           console.error("Error adding document: ", e);
         }

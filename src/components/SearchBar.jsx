@@ -75,8 +75,8 @@ const SearchBar = () => {
                 <input placeholder='Search Videos' value={text} onChange={onInputChange} className='border-none outline-none placeholder-gray-600 w-full' />
             </div>
             <div className='flex flex-row mx-2 '>
-                <span className='mr-4 text-gray-500 hover:text-gray-800 hover:scale-110' onClick={voiceSearchStart}><BsFillMicFill/></span>
-                <span className='text-gray-500 hover:text-gray-800 hover:scale-110' onClick={onFormSubmit}><AiOutlineSearch/></span>
+                <span className='mr-4 text-gray-500 hover:text-gray-800 hover:scale-105' onClick={voiceSearchStart}><BsFillMicFill/></span>
+                <span className='text-gray-500 hover:text-gray-800 hover:scale-105' onClick={onFormSubmit}><AiOutlineSearch/></span>
             </div>
         </form>
         </div>
