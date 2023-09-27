@@ -30,7 +30,7 @@ const Authentication = ({signedin}) => {
   return (
     <>
     {signedin?(<div className='w-full px-6 pt-24 flex justify-center font-medium'>You are already "Signed In"</div>):(
-    <div className=' flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-black bg-opacity-30'>
+    <div className=' flex flex-col justify-center items-center absolute top-0 left-0 w-full min-h-screen bg-black bg-opacity-30'>
         <div className='w-4/5 md:w-1/2 h-fit my-20 px-4 pb-10 bg-gray-200 rounded-md '>
             <div className='w-full h-full overflow-hidden rounded-md'>
             <div className=' flex flex-row items-center pt-4 w-full'>
